@@ -25,7 +25,7 @@ public class CourseModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID userId;
+    private UUID courseId;
     @Column(nullable = false, unique = true, length = 150)
     private String name;
     @Column(nullable = false, unique = true, length = 250)
