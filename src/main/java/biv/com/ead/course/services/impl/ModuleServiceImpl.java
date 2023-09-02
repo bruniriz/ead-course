@@ -10,6 +10,8 @@ import repositories.ModuleRepository;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 
 @Service
@@ -33,5 +35,10 @@ public class ModuleServiceImpl implements ModuleService {
     @Override
     public ModuleModel save(ModuleModel moduleModel) {
         return moduleRepository.save(moduleModel);
+    }
+
+    @Override
+    public Optional<ModuleModel> findModuleIntoCourses(UUID courseId, UUID moduleId) {
+        return moduleRepository.findModuleIntoCourse(courseId, moduleId);
     }
 }

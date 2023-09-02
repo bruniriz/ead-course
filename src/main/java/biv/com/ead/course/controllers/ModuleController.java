@@ -39,4 +39,16 @@ public class ModuleController {
         moduleModel.setCourse(courseModelOptional.get());
         return ResponseEntity.status(HttpStatus.CREATED).body(moduleService.save(moduleModel));
     }
+
+    @DeleteMapping("/{courseId}")
+    public ResponseEntity<Object> deleteModule(@PathVariable(value = "courseId") UUID courseId,
+                                               @PathVariable(value = "moduleId") UUID moduleId) {
+        Optional<ModuleModel> moduleModelOptional = moduleService.findModuleIntoCourses(courseId, moduleId);
+        if (!moduleModelOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Module not found for this course.");
+        }
+
+        moduleService.delete(moduleModelOptional.get());
+        return ResponseEntity.status(HttpStatus.OK).body("Course deleted successfully.");
+    }
 }
