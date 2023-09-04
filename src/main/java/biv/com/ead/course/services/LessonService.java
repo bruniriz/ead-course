@@ -2,6 +2,13 @@ package biv.com.ead.course.services;
 
 import biv.com.ead.course.models.LessonModel;
 
+import java.util.Optional;
+import java.util.UUID;
+
 public interface LessonService {
     LessonModel save(LessonModel lessonModel);
+
+    Optional<LessonModel> findLessonIntoModule(UUID moduleId, UUID lessonId);
+
+    void delete(LessonModel lessonModel);
 }
