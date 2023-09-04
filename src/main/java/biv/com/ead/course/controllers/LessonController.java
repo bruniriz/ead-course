@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -65,5 +66,10 @@ public class LessonController {
         lessonModel.setDescription(lessonDto.getDescription());
         lessonModel.setVideoUrl(lessonDto.getVideoUrl());
         return ResponseEntity.status(HttpStatus.OK).body(lessonService.save(lessonModel));
+    }
+
+    @GetMapping("/modules/{moduleId}/lessons")
+    public ResponseEntity<List<LessonModel>> getAllLessons(@PathVariable(value = "moduleId") UUID moduleId) {
+        return ResponseEntity.status(HttpStatus.OK).body(lessonService.findAllByModule(moduleId));
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repositories.LessonRepository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -29,5 +30,10 @@ public class LessonServiceImpl implements LessonService {
     @Override
     public void delete(LessonModel lessonModel) {
         lessonRepository.delete(lessonModel);
+    }
+
+    @Override
+    public List<LessonModel> findAllByModule(UUID moduleId) {
+        return lessonRepository.findAllLessonsIntoModule(moduleId);
     }
 }
